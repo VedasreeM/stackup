@@ -3,7 +3,8 @@
 Long Description about project. This project do that. This project is awesome...
 ## Team members
 1. [ASHISH B](https://github.com/ASHISH-28-02)
-2. Name [Embed perosnal github URL]
+2. [ABHISHEK ARUNKUMAR](https://github.com/abhishekarun2901)
+3.  Name [Embed perosnal github URL]
 ## Team Id
 Team id here
 ## Link to product walkthrough
