@@ -1,10 +1,11 @@
 ![StackUp Banner](https://tinkerhub.frappe.cloud/files/stackup%20banner.jpeg)
 # Project Name
-Long Description about project. This project do that. This project is awesome...
+TaskGuild
 ## Team members
 1. [ASHISH B](https://github.com/ASHISH-28-02)
 2. [ABHISHEK ARUNKUMAR](https://github.com/abhishekarun2901)
-3.  Name [Embed perosnal github URL]
+3. [RAYHANA S](https://github.com/Rayhana27)
+4. [VEDASREE M](https://github.com/VedasreeM)
 ## Team Id
 geekguild
 ## Link to product walkthrough
