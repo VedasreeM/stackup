@@ -53,4 +53,3 @@ document.getElementById('addTaskForm').addEventListener('submit', function(event
         taskInput.value = "";
     }
 });
-
