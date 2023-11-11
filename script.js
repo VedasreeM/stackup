@@ -1,4 +1,6 @@
-function addTask() {
+function addTask(event) {
+    event.preventDefault(); // Prevent the form from submitting the traditional way
+
     const taskInput = document.getElementById('taskInput').value;
     const li = document.createElement('li');
     li.appendChild(document.createTextNode(taskInput));
@@ -24,24 +26,21 @@ function addTask() {
 }
 
 function updateTask(taskItem) {
-    // Use prompt to get the updated task text from the user
     const updatedText = prompt('Update the task:', taskItem.firstChild.nodeValue);
 
-    // Check if the user clicked "Cancel" in the prompt
     if (updatedText === null) {
         return;
     }
 
-    // Update the task text
     taskItem.firstChild.nodeValue = updatedText;
 }
 
 function deleteTask(taskItem) {
-    // Use confirm to ask the user for confirmation before deleting the task
     const isConfirmed = confirm('Are you sure you want to delete this task?');
 
     if (isConfirmed) {
-        // Remove the task
         taskItem.remove();
     }
 }
+
+document.getElementById('addTaskForm').addEventListener('submit', addTask);
