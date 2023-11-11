@@ -29,12 +29,18 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function updateTodo(todoId) {
-        // Add logic to update the todo based on its ID
-        console.log(`Update todo with ID ${todoId}`);
+        const updatedText = prompt('Update task:', ''); // Prompt user for updated task text
+        if (updatedText !== null) {
+            const updatedTodos = todos.map(todo =>
+                todo.id === todoId ? { ...todo, text: updatedText } : todo
+            );
+            todos.length = 0; // Clear the existing array
+            Array.prototype.push.apply(todos, updatedTodos); // Push updated todos back
+            renderTodos();
+        }
     }
 
     function deleteTodo(todoId) {
-        // Add logic to delete the todo based on its ID
         const updatedTodos = todos.filter(todo => todo.id !== todoId);
         todos.length = 0; // Clear the existing array
         Array.prototype.push.apply(todos, updatedTodos); // Push updated todos back
