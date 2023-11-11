@@ -1,46 +1,50 @@
-function addTask(event) {
-    event.preventDefault(); // Prevent the form from submitting the traditional way
+document.addEventListener('DOMContentLoaded', function () {
+    const todos = [];
 
-    const taskInput = document.getElementById('taskInput').value;
-    const li = document.createElement('li');
-    li.appendChild(document.createTextNode(taskInput));
+    const todoList = document.getElementById('todos');
+    const todoInput = document.getElementById('todoInput');
 
-    const updateButton = document.createElement('button');
-    updateButton.innerHTML = 'Update';
-    updateButton.onclick = function() {
-        updateTask(li);
-    };
-
-    const deleteButton = document.createElement('button');
-    deleteButton.innerHTML = 'Delete';
-    deleteButton.onclick = function() {
-        deleteTask(li);
-    };
-
-    li.appendChild(updateButton);
-    li.appendChild(deleteButton);
-
-    document.getElementById('taskList').appendChild(li);
-
-    document.getElementById('taskInput').value = '';
-}
-
-function updateTask(taskItem) {
-    const updatedText = prompt('Update the task:', taskItem.firstChild.nodeValue);
-
-    if (updatedText === null) {
-        return;
+    function renderTodos() {
+        todoList.innerHTML = '';
+        todos.forEach(todo => {
+            const li = document.createElement('li');
+            li.innerHTML = `
+                <span>${todo.text}</span>
+                <button onclick="updateTodo(${todo.id})">Update</button>
+                <button onclick="deleteTodo(${todo.id})">Delete</button>
+            `;
+            todoList.appendChild(li);
+        });
     }
 
-    taskItem.firstChild.nodeValue = updatedText;
-}
-
-function deleteTask(taskItem) {
-    const isConfirmed = confirm('Are you sure you want to delete this task?');
-
-    if (isConfirmed) {
-        taskItem.remove();
+    function addTodo() {
+        const newTodo = {
+            id: todos.length + 1,
+            text: todoInput.value,
+            completed: false,
+        };
+        todos.push(newTodo);
+        todoInput.value = '';
+        renderTodos();
     }
-}
 
-document.getElementById('addTaskForm').addEventListener('submit', addTask);
+    function updateTodo(todoId) {
+        // Add logic to update the todo based on its ID
+        console.log(`Update todo with ID ${todoId}`);
+    }
+
+    function deleteTodo(todoId) {
+        // Add logic to delete the todo based on its ID
+        const updatedTodos = todos.filter(todo => todo.id !== todoId);
+        todos.length = 0; // Clear the existing array
+        Array.prototype.push.apply(todos, updatedTodos); // Push updated todos back
+        renderTodos();
+    }
+
+    document.querySelector('form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        addTodo();
+    });
+
+    renderTodos();
+});
