@@ -93,3 +93,4 @@ function clearAllTasks() {
     var taskList = document.getElementById('taskList');
     taskList.innerHTML = ''; // Remove all tasks
 }
+
