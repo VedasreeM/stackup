@@ -1,116 +1,53 @@
-/* Reset default margin, padding, and list styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    overflow: hidden;
-}
-
-/* Apply a background image to the body */
 body {
-    background-image: url("./assets/bgImg.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    min-height: 100vh;
-    background-color: #f2f2f2;
     font-family: Arial, sans-serif;
     display: flex;
-    align-items: center;
     justify-content: center;
-    
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f4f4f4;
 }
 
-/* Style the container */
-.container {
-    width: 25vw;
-    margin: 0 auto 12em ;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    align-self: center;  
-}
-
-/* Style the heading */
-h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
+header {
     text-align: center;
-}
-
-/* Style the input field */
-input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-bottom: 10px;
-}
-
-/* Style the "Add Task" button */
-button {
-    /* display: block; */
-    width: 100%;
-    padding: 10px;
-    background-color: #007BFF;
+    background-color: #007bff;
     color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin: auto;
-    margin-top: 10px;
+    padding: 10px;
 }
 
-/* Style the task list */
+main {
+    max-width: 600px;
+    margin: 20px;
+}
+
+#todoList, #addTodoForm {
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    gap: 10px;
+}
+
 ul {
+    list-style-type: none;
     padding: 0;
 }
 
-/* Style individual tasks */
 li {
-    display: flex;
-    /* justify-content: space-between; */
-    align-items: center;
     background-color: #fff;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-/* Style the "Delete" button inside each task */
-/* li button */
-.delete-button {
-    justify-content: space-between;
-    background-color: #FF4444;
+button {
+    background-color: #007bff;
     color: #fff;
     border: none;
-    border-radius: 4px;
+    padding: 5px 10px;
     cursor: pointer;
-    
-}
-
-.actions{
-    display: flex;
-    justify-content: space-between;
-    max-width: 100%;
-}
-
-.content{
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-.delete{
-    float:right
-}
-/* Style the "Mark as Complete" button inside each task */
-.complete-button {
-    background-color: #28a745;
-    width: 50px;
-}
-.completed {
-    text-decoration: line-through;
 }
