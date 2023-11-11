@@ -1,57 +1,55 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const todos = [];
+document.getElementById('addTaskForm').addEventListener('submit', function(event) {
+    event.preventDefault();
 
-    const todoList = document.getElementById('todos');
-    const todoInput = document.getElementById('todoInput');
+    // Get task input value
+    let taskInput = document.getElementById('task');
+    let taskText = taskInput.value;
 
-    function renderTodos() {
-        todoList.innerHTML = '';
-        todos.forEach(todo => {
-            const li = document.createElement('li');
-            li.setAttribute('data-id', todo.id);
-            li.innerHTML = `
-                <span>${todo.text}</span>
-                <button onclick="updateTodo(${todo.id})">Update</button>
-                <button onclick="deleteTodo(${todo.id})">Delete</button>
-            `;
-            todoList.appendChild(li);
+    // Check if the task is not empty
+    if (taskText.trim() !== "") {
+        // Create a new task item
+        let taskList = document.getElementById('taskList');
+        let newTask = document.createElement('li');
+        newTask.textContent = taskText;
+
+        // Add buttons for updating and deleting tasks
+        let updateButton = document.createElement('button');
+        updateButton.textContent = 'Update';
+        updateButton.addEventListener('click', function() {
+            // Make the task editable
+            let taskText = newTask.textContent;
+            newTask.innerHTML = '<input type="text" value="' + taskText + '">';
+
+            // Add a save button for updating the task
+            let saveButton = document.createElement('button');
+            saveButton.textContent = 'Save';
+            saveButton.addEventListener('click', function() {
+                // Save the updated task text
+                let updatedTaskText = newTask.querySelector('input').value;
+                newTask.innerHTML = updatedTaskText + ' ';
+
+                // Add buttons again for updating and deleting tasks
+                newTask.appendChild(updateButton);
+                newTask.appendChild(deleteButton);
+            });
+
+            newTask.appendChild(saveButton);
         });
+
+        let deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.addEventListener('click', function() {
+            // Implement delete task functionality
+            taskList.removeChild(newTask);
+        });
+
+        newTask.appendChild(updateButton);
+        newTask.appendChild(deleteButton);
+
+        // Add the new task to the list
+        taskList.appendChild(newTask);
+
+        // Clear the input field
+        taskInput.value = "";
     }
-
-    function addTodo() {
-        const newTodo = {
-            id: todos.length + 1,
-            text: todoInput.value,
-            completed: false,
-        };
-        todos.push(newTodo);
-        todoInput.value = '';
-        renderTodos();
-    }
-
-    function updateTodo(todoId) {
-        const li = document.querySelector(`li[data-id="${todoId}"]`);
-        const span = li.querySelector('span');
-        const updatedText = prompt('Update task:', span.textContent);
-        if (updatedText !== null) {
-            todos.find(todo => todo.id === todoId).text = updatedText;
-            renderTodos();
-        }
-    }
-
-    function deleteTodo(todoId) {
-        const todoIndex = todos.findIndex(todo => todo.id === todoId);
-
-        if (todoIndex !== -1) {
-            todos.splice(todoIndex, 1);
-            renderTodos();
-        }
-    }
-
-    document.querySelector('form').addEventListener('submit', function (event) {
-        event.preventDefault();
-        addTodo();
-    });
-
-    renderTodos();
 });
