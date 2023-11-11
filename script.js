@@ -1,55 +1,41 @@
-document.getElementById('addTaskForm').addEventListener('submit', function(event) {
-    event.preventDefault();
+function addTask() {
+    // Get the task input value
+    const taskInput = document.getElementById('taskInput').value;
 
-    // Get task input value
-    let taskInput = document.getElementById('task');
-    let taskText = taskInput.value;
+    // Create a new list item
+    const li = document.createElement('li');
+    li.appendChild(document.createTextNode(taskInput));
 
-    // Check if the task is not empty
-    if (taskText.trim() !== "") {
-        // Create a new task item
-        let taskList = document.getElementById('taskList');
-        let newTask = document.createElement('li');
-        newTask.textContent = taskText;
+    // Create buttons for updating and deleting tasks
+    const updateButton = document.createElement('button');
+    updateButton.innerHTML = 'Update';
+    updateButton.onclick = function() {
+        updateTask(li);
+    };
 
-        // Add buttons for updating and deleting tasks
-        let updateButton = document.createElement('button');
-        updateButton.textContent = 'Update';
-        updateButton.addEventListener('click', function() {
-            // Make the task editable
-            let taskText = newTask.textContent;
-            newTask.innerHTML = '<input type="text" value="' + taskText + '">';
+    const deleteButton = document.createElement('button');
+    deleteButton.innerHTML = 'Delete';
+    deleteButton.onclick = function() {
+        deleteTask(li);
+    };
 
-            // Add a save button for updating the task
-            let saveButton = document.createElement('button');
-            saveButton.textContent = 'Save';
-            saveButton.addEventListener('click', function() {
-                // Save the updated task text
-                let updatedTaskText = newTask.querySelector('input').value;
-                newTask.innerHTML = updatedTaskText + ' ';
+    // Append buttons to the list item
+    li.appendChild(updateButton);
+    li.appendChild(deleteButton);
 
-                // Add buttons again for updating and deleting tasks
-                newTask.appendChild(updateButton);
-                newTask.appendChild(deleteButton);
-            });
+    // Append the list item to the task list
+    document.getElementById('taskList').appendChild(li);
 
-            newTask.appendChild(saveButton);
-        });
+    // Clear the task input field
+    document.getElementById('taskInput').value = '';
+}
 
-        let deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Delete';
-        deleteButton.addEventListener('click', function() {
-            // Implement delete task functionality
-            taskList.removeChild(newTask);
-        });
+function updateTask(taskItem) {
+    // Implement logic to update the task (e.g., change text, mark as completed)
+    // You can use prompt, alert, or other UI elements for user input
+}
 
-        newTask.appendChild(updateButton);
-        newTask.appendChild(deleteButton);
-
-        // Add the new task to the list
-        taskList.appendChild(newTask);
-
-        // Clear the input field
-        taskInput.value = "";
-    }
-});
+function deleteTask(taskItem) {
+    // Implement logic to delete the task
+    taskItem.remove();
+}
