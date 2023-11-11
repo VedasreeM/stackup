@@ -1,22 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ToDo List</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Task Management App</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-    <div class="container">
-        <h1>My ToDo List</h1>
-        <input type="text" id="newTask" placeholder="Add a new task...">
-        <button onclick="addTask()">Add Task</button>
-        <button onclick="clearAllTasks()">Clear All Tasks</button>
-        <ul id="taskList"></ul>
-    </div>
+    <!-- Header Section -->
+    <header>
+        <h1>Task Management App</h1>
+        <!-- Add any additional header elements you may need -->
+    </header>
+
+    <!-- Main Content Section -->
+    <main>
+        <!-- To-Do List Display -->
+        <section id="todoList">
+            <h2>Your To-Do List</h2>
+            <ul id="todos">
+                <!-- Todo items will be dynamically added here -->
+            </ul>
+        </section>
+
+        <!-- Form to Add New Todo -->
+        <section id="addTodoForm">
+            <h2>Add New Todo</h2>
+            <form>
+                <input type="text" id="todoInput" placeholder="Enter your task" required>
+                <button type="submit">Add</button>
+            </form>
+        </section>
+
+        <!-- Add any other sections or features you plan to implement -->
+    </main>
+
     <script src="script.js"></script>
 </body>
-
 </html>
