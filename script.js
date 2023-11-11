@@ -1,33 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TaskMasterPro - Task Management App</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <header>
-        <h1>TaskMasterPro</h1>
-    </header>
+document.addEventListener('DOMContentLoaded', function () {
+    const todos = [];
 
-    <main>
-        <section id="todoList">
-            <h2>Your To-Do List</h2>
-            <ul id="todos">
-                <!-- Todo items will be dynamically added here -->
-            </ul>
-        </section>
+    const todoList = document.getElementById('todos');
+    const todoInput = document.getElementById('todoInput');
 
-        <section id="addTodoForm">
-            <h2>Add New Todo</h2>
-            <form>
-                <input type="text" id="todoInput" placeholder="Enter your task" required>
-                <button type="submit">Add</button>
-            </form>
-        </section>
-    </main>
+    function renderTodos() {
+        todoList.innerHTML = '';
+        todos.forEach(todo => {
+            const li = document.createElement('li');
+            li.setAttribute('data-id', todo.id);
+            li.innerHTML = `
+                <span>${todo.text}</span>
+                <button onclick="updateTodo(${todo.id})">Update</button>
+                <button onclick="deleteTodo(${todo.id})">Delete</button>
+            `;
+            todoList.appendChild(li);
+        });
+    }
 
-    <script src="script.js"></script>
-</body>
-</html>
+    function addTodo() {
+        const newTodo = {
+            id: todos.length + 1,
+            text: todoInput.value,
+            completed: false,
+        };
+        todos.push(newTodo);
+        todoInput.value = '';
+        renderTodos();
+    }
+
+    function updateTodo(todoId) {
+        const li = document.querySelector(`li[data-id="${todoId}"]`);
+        const span = li.querySelector('span');
+        const updatedText = prompt('Update task:', span.textContent);
+        if (updatedText !== null) {
+            todos.find(todo => todo.id === todoId).text = updatedText;
+            renderTodos();
+        }
+    }
+
+    function deleteTodo(todoId) {
+        const todoIndex = todos.findIndex(todo => todo.id === todoId);
+
+        if (todoIndex !== -1) {
+            todos.splice(todoIndex, 1);
+            renderTodos();
+        }
+    }
+
+    document.querySelector('form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        addTodo();
+    });
+
+    renderTodos();
+});
