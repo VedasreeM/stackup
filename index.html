@@ -7,9 +7,18 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>TaskMasterPro</h1>
-    <!-- Add your task list here -->
+    <h1>Welcome to TaskMasterPro</h1>
+    
+    <!-- Form to add a task -->
+    <form id="addTaskForm">
+        <label for="task">Add Task:</label>
+        <input type="text" id="task" required>
+        <button type="submit">Add Task</button>
+    </form>
+
+    <!-- List to display tasks -->
     <ul id="taskList"></ul>
+
     <script src="script.js"></script>
 </body>
 </html>
