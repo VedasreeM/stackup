@@ -29,13 +29,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function updateTodo(todoId) {
-        const updatedText = prompt('Update task:', ''); // Prompt user for updated task text
+        const li = document.querySelector(`li[data-id="${todoId}"]`);
+        const span = li.querySelector('span');
+        const updatedText = prompt('Update task:', span.textContent);
         if (updatedText !== null) {
-            const updatedTodos = todos.map(todo =>
-                todo.id === todoId ? { ...todo, text: updatedText } : todo
-            );
-            todos.length = 0; // Clear the existing array
-            Array.prototype.push.apply(todos, updatedTodos); // Push updated todos back
+            todos.find(todo => todo.id === todoId).text = updatedText;
             renderTodos();
         }
     }
