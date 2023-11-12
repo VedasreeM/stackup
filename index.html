@@ -7,18 +7,26 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Welcome to TaskMasterPro</h1>
+    <header>
+        <h1>TaskMasterPro</h1>
+    </header>
 
-    <!-- Form to add tasks -->
-    <form id="addTaskForm">
-        <input type="text" id="taskInput" placeholder="Add a new task" required>
-        <button type="button" onclick="addTask()">Add Task</button>
-    </form>
+    <main>
+        <section id="todoList">
+            <h2>Your To-Do List</h2>
+            <ul id="todos">
+                <!-- Todo items will be dynamically added here -->
+            </ul>
+        </section>
 
-    <!-- Task list -->
-    <ul id="taskList">
-        <!-- Tasks will be dynamically added here -->
-    </ul>
+        <section id="addTodoForm">
+            <h2>Add New Todo</h2>
+            <form>
+                <input type="text" id="todoInput" placeholder="Enter your task" required>
+                <button type="submit">Add</button>
+            </form>
+        </section>
+    </main>
 
     <script src="script.js"></script>
 </body>
